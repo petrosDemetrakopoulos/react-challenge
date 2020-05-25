@@ -1,26 +1,59 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import UserTable from './components/UserTable'
+import {createStore, applyMiddleware} from 'redux';
+import {Provider} from 'react-redux'
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {updateUser, getUsersSuccess, getUsers, fetchUsers, TriggerUpdateUser} from './actions/UserActions'
+import UserReducer from './reducers/UserReducer';
+import thunkMiddleware from 'redux-thunk'
 import './App.css';
 
-function App() {
+
+let initialState = {users:[]}
+const store = createStore(UserReducer, initialState, applyMiddleware(thunkMiddleware));
+
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.togleUser = this.togleUser.bind(this);
+  }
+
+  togleUser(user) {
+    this.props.TriggerUpdateUser(user)
+    //this.props.updateUser({id: id, active: active})
+  }
+
+  componentDidMount() {
+    this.props.fetchUsers();
+  }
+
+  render() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <UserTable usersList={this.props.usersList} togleUser={this.togleUser}/>
     </div>
   );
 }
 
-export default App;
+}
+
+const mapStateToProps = (state) => {
+  return {
+    usersList : state.users,
+    hasErrors: state.users.hasErrors
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    updateUser:updateUser,
+    getUsers: getUsers,
+    getUsersSuccess: getUsersSuccess,
+    fetchUsers: fetchUsers,
+    TriggerUpdateUser: TriggerUpdateUser
+  },dispatch);
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

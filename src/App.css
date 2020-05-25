@@ -28,6 +28,43 @@
   color: #61dafb;
 }
 
+.userIcon{
+  width: 32px;
+  height: 32px;
+  margin-left: 2em;
+  float: left;
+}
+
+.usersLabel {
+  float: left;
+  font-size: 1.5em;
+  margin-left: 1em;
+  font-family: Roboto;
+  font-size: 1.3em;
+}
+
+.topHeader {
+  margin-top: 2em;
+  width:100%;
+  display: inline-block;
+}
+
+.usersAvatar {
+  float: left;
+}
+
+.tableHeader {
+  background-color: white;
+  font-family: Roboto;
+  font-size: 0.9em;
+  font-weight: 900;
+}
+
+.headerText {
+  color: #3b638b;
+  text-transform: uppercase;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
