@@ -37,32 +37,22 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Project Structure
+The project implements a simple UI that is enabled to fetch users data from an API and update the status of each user.
+I used the packages 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The project logic is contained in 3 main directories 
+1) components
+2) actions
+3) reducers
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The first directory holds the **custom components** we used.
+These are a Table Header, a User Item (aka the row in our table) representing a specific user, a User List which contains the body of the table and finally a User Table element which combines all the elements mentione above and it is the one finally rendered in the <App> element.
 
-### Code Splitting
+The typical Actions / Reducers / Store form has been kept for redux functionality.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+UserActions.js holds the actions that can be done for a user and it represents the API communication level
 
-### Analyzing the Bundle Size
+UserReducer.js holds the state change logic 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+ 
